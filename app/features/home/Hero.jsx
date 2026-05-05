@@ -10,25 +10,24 @@ const services = [
   {
     title: "الجراحة التجميلية",
     image:
-      "https://res.cloudinary.com/dxxeujg8z/image/upload/v1777934870/Untitled-design-2025-10-22T162454.315_z4umrg.png",
+      "https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_600/v1777934870/Untitled-design-2025-10-22T162454.315_z4umrg.png",
   },
   {
     title: "العناية بالبشرة",
     image:
-      "https://res.cloudinary.com/dxxeujg8z/image/upload/v1777934765/photo-1570172619644-dfd03ed5d881_uxz3ia.jpg",
+      "https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_600/v1777934765/photo-1570172619644-dfd03ed5d881_uxz3ia.jpg",
   },
   {
     title: "التغذية العلاجية",
     image:
-      "https://res.cloudinary.com/dxxeujg8z/image/upload/v1777934802/photo-1490645935967-10de6ba17061_atnddz.jpg",
+      "https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_600/v1777934802/photo-1490645935967-10de6ba17061_atnddz.jpg",
   },
   {
     title: "المساج الليمفاوي",
     image:
-      "https://res.cloudinary.com/dxxeujg8z/image/upload/v1777934838/Untitled-design_horopv.png",
+      "https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_600/v1777934838/Untitled-design_horopv.png",
   },
 ];
-
 const stats = [
   { icon: <Users size={24} />, label: "عميل سعيد", value: "+12,000" },
   { icon: <Activity size={24} />, label: "عملية ناجحة", value: "+5,500" },
@@ -132,20 +131,18 @@ export default function Hero() {
           <div className="relative">
             <div className="grid grid-cols-12 gap-4">
               <Image
-                src="https://res.cloudinary.com/dxxeujg8z/image/upload/v1777934362/photo-1519494026892-80bbd2d6fd0d_inhfzj.jpg"
-                className="col-span-7 rounded-4xl shadow-xl mt-12 hover:scale-[1.02] transition-transform duration-500"
+                src="https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_800/v1777934362/photo-1519494026892-80bbd2d6fd0d_inhfzj.jpg"
+                className="col-span-7 w-full h-auto rounded-4xl shadow-xl mt-12 hover:scale-[1.02] transition-transform duration-500"
                 alt="Clinic"
-                loading="lazy"
-                width={400}
-                height={400}
-              />
-              <Image
-                src="https://res.cloudinary.com/dxxeujg8z/image/upload/v1777934551/photo-1527613426441-4da17471b66d_prm9fx.jpg"
-                className="col-span-5 rounded-4xl shadow-xl hover:-translate-y-2 transition-transform duration-500"
-                alt="Interior"
-                loading="lazy"
                 width={300}
                 height={300}
+              />
+              <Image
+                src="https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_800/v1777934551/photo-1527613426441-4da17471b66d_prm9fx.jpg"
+                className="col-span-5 w-full h-auto rounded-4xl shadow-xl hover:-translate-y-2 transition-transform duration-500"
+                alt="Interior"
+                width={250}
+                height={250}
               />
             </div>
           </div>

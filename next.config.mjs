@@ -2,6 +2,13 @@
 const nextConfig = {
   /* config options here */
   reactCompiler: true,
+  // next.config.js
+  experimental: {
+    optimizeCss: true,
+  },
+  compiler: {
+    removeConsole: true,
+  },
   images: {
     remotePatterns: [
       {
@@ -17,6 +24,7 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
+    formats: ["image/avif", "image/webp"],
   },
 };
 
