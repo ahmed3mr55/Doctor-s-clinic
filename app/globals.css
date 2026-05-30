@@ -23,3 +23,60 @@ body {
   background: #fff;
   color: #1c1917;
 }
+
+.article-content h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.article-content blockquote {
+  border-right: 4px solid #f59e0b;
+  padding-right: 16px;
+  margin: 20px 0;
+  color: #666;
+}
+
+
+:root {
+  --smooth-ease: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.reveal-fade {
+  opacity: 0;
+  transform: translateY(var(--y, 30px));
+  will-change: transform, opacity;
+}
+
+.reveal-fade.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--duration, 0.6s) var(--smooth-ease) var(--delay, 0s),
+    transform var(--duration, 0.6s) var(--smooth-ease) var(--delay, 0s);
+}
+
+.stagger-container .stagger-item {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: transform, opacity;
+}
+
+.stagger-container.active .stagger-item {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.5s var(--smooth-ease) var(--delay, 0s),
+    transform 0.5s var(--smooth-ease) var(--delay, 0s);
+}
+
+@media print {
+  .reveal-fade,
+  .stagger-container .stagger-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@-moz-document url-prefix() {
+}

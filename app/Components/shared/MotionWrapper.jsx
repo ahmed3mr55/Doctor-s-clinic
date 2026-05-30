@@ -1,83 +1,81 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import React, { useEffect, useRef } from "react";
 
-/* ================= FadeIn ================= */
 export const FadeIn = ({
   children,
   delay = 0,
-  y = 15,
-  x = 0,
+  duration = 0.6,
+  y = 30,
+  className = "",
 }) => {
   const ref = useRef(null);
-  const [mounted, setMounted] = useState(false);
 
-  const isInView = useInView(ref, {
-    once: true,
-    margin: "-100px", // مهم للموبايل
-  });
-
-  // حل مشاكل hydration في Next.js
   useEffect(() => {
-    setMounted(true);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          ref.current.classList.add("active");
+          observer.unobserve(ref.current);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, y, x }}
-      animate={
-        mounted && isInView
-          ? { opacity: 1, y: 0, x: 0 }
-          : { opacity: 1 } // fallback عشان العنصر يفضل ظاهر
-      }
-      transition={{
-        duration: 0.6,
-        delay,
-        ease: "easeOut",
-      }}
-      className="will-change-transform"
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-/* ================= StaggerContainer ================= */
-export const StaggerContainer = ({ children }) => {
-  return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={{
-        hidden: {},
-        visible: {
-          transition: {
-            staggerChildren: 0.15,
-          },
-        },
+      className={`reveal-fade ${className}`}
+      style={{
+        "--delay": `${delay}s`,
+        "--duration": `${duration}s`,
+        "--y": `${y}px`,
       }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 };
 
-/* ================= Stagger Item ================= */
-export const StaggerItem = ({
+export const StaggerContainer = ({
   children,
-  y = 20,
-  x = 0,
+  stagger = 0.12,
+  className = "",
 }) => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      const items = ref.current.querySelectorAll(".stagger-item");
+      items.forEach((item, index) => {
+        item.style.setProperty("--delay", `${index * stagger}s`);
+      });
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          ref.current.classList.add("active");
+          observer.unobserve(ref.current);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [stagger]);
+
   return (
-    <motion.div
-      variants={{
-        hidden: { opacity: 0, y, x },
-        visible: { opacity: 1, y: 0, x: 0 },
-      }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-    >
+    <div ref={ref} className={`stagger-container ${className}`}>
       {children}
-    </motion.div>
+    </div>
   );
+};
+
+export const StaggerItem = ({ children, className = "" }) => {
+  return <div className={`stagger-item ${className}`}>{children}</div>;
 };
