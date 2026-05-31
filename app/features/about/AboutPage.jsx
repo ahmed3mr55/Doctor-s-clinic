@@ -10,6 +10,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { FadeIn } from "@/app/Components/shared/MotionWrapper";
+import Image from "next/image";
 
 // 1. بيانات القيم (Values)
 const values = [
@@ -46,11 +47,16 @@ export default function AboutPage() {
       {/* 1. Hero Section - قصة شغف */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="https://veraclinics.net/wp-content/uploads/2025/10/Untitled-design-2025-10-22T162454.315.png"
-            className="w-full h-full object-cover"
+          <Image
+            src="https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_1200,c_limit/v1777934870/Untitled-design-2025-10-22T162454.315_z4umrg.png"
             alt="Vera Clinic Interior"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority={false}
+            loading="eager"
           />
+
           <div className="absolute inset-0 bg-stone-900/60 backdrop-blur-[2px]" />
         </div>
 
@@ -114,11 +120,17 @@ export default function AboutPage() {
           <FadeIn x={30} delay={0.2}>
             <div className="relative">
               <div className="absolute -inset-4 bg-amber-100 rounded-[3rem] rotate-3 -z-10" />
-              <img
-                src="https://veraclinics.net/wp-content/uploads/2025/10/WhatsApp-Image-2022-01-26-at-12.02.27-AM-1.jpeg"
-                className="rounded-[2.5rem] shadow-2xl w-full object-cover aspect-[4/5]"
-                alt="Dr. Mostafa El-Akazi"
-              />
+
+              <div className="relative w-full aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl">
+                <Image
+                  src="https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_1200,c_limit/v1777934920/WhatsApp-Image-2022-01-26-at-12.02.27-AM-1_jfdglk.jpg"
+                  alt="Dr. Mostafa El-Akazi"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                  priority={false}
+                />
+              </div>
             </div>
           </FadeIn>
         </div>
@@ -192,10 +204,14 @@ export default function AboutPage() {
       {/* 5. Team CTA - فريقنا الاستثنائي */}
       <section className="relative py-32 overflow-hidden bg-stone-900">
         <div className="absolute inset-0 opacity-40">
-          <img
-            src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80"
-            className="w-full h-full object-cover grayscale"
+          <Image
+            src="https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_1200,c_limit/v1777934362/photo-1519494026892-80bbd2d6fd0d_inhfzj.jpg"
             alt="Medical Team"
+            fill
+            sizes="100vw"
+            className="object-cover grayscale"
+            priority
+            loading="eager"
           />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">

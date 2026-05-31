@@ -8,6 +8,7 @@ import {
   Plus,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const services = [
   {
@@ -17,14 +18,14 @@ const services = [
     description:
       "نستخدم تقنيات الـ 4D والفيزر لنحت القوام بأسلوب فني يبرز تفاصيل الجمال الطبيعي، مع ضمان أمان تام وفترة تعافي قياسية تحت إشراف نخبة من الاستشاريين.",
     image:
-      "https://veraclinics.net/wp-content/uploads/2025/10/Untitled-design-2025-10-25T003157.523.png",
+      "https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto/v1778063811/Untitled-design-2025-10-25T003157.523_lauhh7.png",
     details: [
       "شفط الدهون الجراحي",
       "شد الترهلات",
       "تجميل الأنف",
       "تجميل الجفون",
     ],
-    pageLink: "/plastic-surgery",
+    pageLink: "/services/plastic-surgery",
   },
   {
     id: "02",
@@ -33,7 +34,7 @@ const services = [
     description:
       "نعيد لبشرتك حيويتها عبر أحدث بروتوكولات الحقن التجميلي (فيلر وبوتوكس) وتقنيات الليزر العالمية، لنتائج فورية وطبيعية تعكس شبابك الدائم.",
     image:
-      "https://veraclinics.net/wp-content/uploads/2025/10/Untitled-design-2025-10-26T005303.131.png",
+      "https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_1200,c_limit/v1780186625/Untitled-design-2025-10-26T005303.131_jmraq4.png",
     details: [
       "حقن الفيلر والبوتوكس",
       "خيوط شد الوجه",
@@ -49,7 +50,7 @@ const services = [
     description:
       "صحتك هي استثمارك الأول. نصمم أنظمة غذائية متكاملة تعتمد على التحاليل الطبية لضمان الوصول للوزن المثالي وتحسين كفاءة الجسم الحيوية.",
     image:
-      "https://veraclinics.net/wp-content/uploads/2025/10/Untitled-design-2025-10-26T012140.160.png",
+      "https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_1200,c_limit/v1777934802/photo-1490645935967-10de6ba17061_atnddz.jpg",
     details: ["تخسيس موضعي", "أنظمة غذائية علاجية", "متابعة كتلة الجسم"],
     pageLink: "/nutrition",
   },
@@ -60,7 +61,7 @@ const services = [
     description:
       "برامج استشفاء متخصصة لتقليل التورم وتسريع التئام الأنسجة بعد العمليات، مما يضمن ظهور النتائج النهائية في وقت أسرع وبأفضل شكل ممكن.",
     image:
-      "https://veraclinics.net/wp-content/uploads/2025/10/Untitled-design-2025-10-26T015553.561.png",
+      "https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_1200,c_limit/v1780186760/Untitled-design-2025-10-26T015553.561_gd5sb7.png",
     details: ["تصريف ليمفاوي يدوي", "علاج التورم", "تحسين الدورة الدموية"],
     pageLink: "/postSurgeryCare",
   },
@@ -84,12 +85,15 @@ const ServiceCard = ({ service, idx }) => {
         </span>
 
         {/* الجانب الصوري - حجم أصغر ومحكم */}
-        <div className="w-full lg:w-[32%] relative z-10">
-          <div className="relative overflow-hidden rounded-[2rem] shadow-lg border-2 border-white transition-transform duration-500 hover:scale-[1.02]">
-            <img
+        <div className="w-full  lg:w-[32%] relative z-10">
+          <div className="relative w-full aspect-square overflow-hidden rounded-[2rem] shadow-lg border-2 border-white transition-transform duration-500 hover:scale-[1.02]">
+            <Image
               src={service.image}
               alt={service.title}
-              className="w-full aspect-square object-cover"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 32vw"
+              style={{ objectFit: "cover" }}
             />
           </div>
         </div>
@@ -161,15 +165,19 @@ export default function ServicesPage() {
           </div>
 
           <div className="w-full lg:w-1/2 relative group">
-            <div className="relative rounded-[3rem] overflow-hidden shadow-2xl rotate-2 group-hover:rotate-0 transition-transform duration-500">
-              <img
-                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2070&auto=format&fit=crop"
+            <div className="relative w-full aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl rotate-2 group-hover:rotate-0 transition-transform duration-500">
+              <Image
+                src="https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_1600,c_limit/v1780186841/photo-1629909613654-28e377c37b09_lmmxuo.jpg"
                 alt="Vera Clinic Interior"
-                className="w-full aspect-[4/3] object-cover scale-110 group-hover:scale-100 transition-transform duration-700"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover scale-110 group-hover:scale-100 transition-transform duration-700"
               />
+
               <div className="absolute inset-0 bg-gradient-to-tr from-amber-600/20 to-transparent" />
             </div>
-            {/* زخرفة خلف الصورة */}
+
             <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-amber-100/30 rounded-full blur-[80px]" />
           </div>
         </div>
