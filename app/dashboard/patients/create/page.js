@@ -84,7 +84,7 @@ const CreatePatientPage = () => {
         
         {/* Back Button & Header */}
         <div className="mb-8">
-          <Link 
+          <Link prefetch={false} 
             href="/dashboard/patients" 
             className="inline-flex items-center gap-2 text-stone-500 hover:text-stone-900 font-bold text-sm mb-4 transition-colors"
           >

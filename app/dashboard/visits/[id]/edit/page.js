@@ -177,7 +177,7 @@ export default function EditVisitPage({ params }) {
         {/* هيدر الصفحة */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <Link href={`/dashboard/visits/${visitId}`} className="inline-flex items-center gap-1 text-stone-500 hover:text-stone-900 font-bold text-xs mb-2">
+            <Link prefetch={false} href={`/dashboard/visits/${visitId}`} className="inline-flex items-center gap-1 text-stone-500 hover:text-stone-900 font-bold text-xs mb-2">
               <ArrowRight size={14} /> العودة لتفاصيل الزيارة
             </Link>
             <h1 className="text-2xl lg:text-3xl font-black text-stone-900">تعديل سجل الزيارة الطبية</h1>

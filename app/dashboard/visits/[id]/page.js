@@ -103,7 +103,7 @@ export default function VisitDetailsPage({ params }) {
       <div className="min-h-screen flex flex-col items-center justify-center bg-stone-50 font-cairo p-4">
         <AlertCircle className="text-red-500 mb-4" size={48} />
         <h2 className="text-xl font-bold text-stone-900 mb-2">{error || "الزيارة الطبية غير موجودة"}</h2>
-        <Link href="/dashboard/visits" className="text-sm font-bold text-orange-500 hover:underline flex items-center gap-1">
+        <Link prefetch={false} href="/dashboard/visits" className="text-sm font-bold text-orange-500 hover:underline flex items-center gap-1">
           <ArrowRight size={16} /> العودة لقائمة الزيارات
         </Link>
       </div>
@@ -122,7 +122,7 @@ export default function VisitDetailsPage({ params }) {
         {/* هيدر الصفحة - يختفي تلقائياً عند الطباعة print:hidden */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-200 pb-6 print:hidden">
           <div className="space-y-1">
-            <Link href="/dashboard/visits" className="inline-flex items-center gap-1.5 text-stone-500 hover:text-stone-900 font-bold text-xs transition-colors mb-2">
+            <Link prefetch={false} href="/dashboard/visits" className="inline-flex items-center gap-1.5 text-stone-500 hover:text-stone-900 font-bold text-xs transition-colors mb-2">
               <ArrowRight size={14} /> سجل الزيارات الطبية
             </Link>
             <div className="flex items-center gap-3">
