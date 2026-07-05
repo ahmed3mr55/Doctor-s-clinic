@@ -1,7 +1,7 @@
 // /api/auth/me
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { verifyToken } from "@/lib/verifyToken";
+import { verifyToken } from "@/lib/auth/verifyToken";
 
 
 // GET /api/auth/me
