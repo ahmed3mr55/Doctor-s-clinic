@@ -8,6 +8,8 @@ import {
   AlertTriangle, CheckCircle, Activity, FileText, LayoutGrid, CalendarDays
 } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default function EditVisitPage({ params }) {
   const router = useRouter();
   const unwrappedParams = use(params);

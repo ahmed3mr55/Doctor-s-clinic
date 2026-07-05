@@ -69,6 +69,8 @@ async function getBookingPageData() {
   }
 }
 
+export const dynamic = "force-dynamic";
+
 export default async function BookingRequestsPage() {
   const authUser = await auth();
   if (!authUser.can("booking_requests.read")) return null;

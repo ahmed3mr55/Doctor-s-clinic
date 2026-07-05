@@ -35,6 +35,8 @@ async function getBlogData(pageNumber) {
   };
 }
 
+export const dynamic = "force-dynamic";
+
 export default async function BlogHomePage({ searchParams }) {
   const authUser = await auth();
   if (!authUser.can("articles.read")) return null;

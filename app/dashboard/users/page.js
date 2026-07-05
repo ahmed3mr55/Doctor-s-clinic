@@ -69,6 +69,8 @@ async function getUsersData(filters) {
   };
 }
 
+export const dynamic = "force-dynamic";
+
 export default async function UsersManagementPage({ searchParams }) {
   const authUser = await auth();
   if (!authUser.can("users.read")) return null;

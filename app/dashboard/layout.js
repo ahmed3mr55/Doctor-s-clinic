@@ -3,6 +3,8 @@ import Sidebar from "@/app/Components/layout/Sidebar";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import ForbiddenComponent from "../features/forbidden/ForbiddenComponent";
 
+export const dynamic = "force-dynamic";
+
 export default async function DashboardLayout({ children }) {
   const { user } = await getCurrentUser();
 

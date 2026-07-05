@@ -36,6 +36,8 @@ async function getPatientsData(page = 1, search = "") {
   }
 }
 
+export const dynamic = "force-dynamic";
+
 export default async function PatientsHomePage({ searchParams }) {
   const authUser = await auth();
   if (!authUser.can("patients.read")) return null;

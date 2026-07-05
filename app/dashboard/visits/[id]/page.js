@@ -9,6 +9,8 @@ import {
   FileText, MapPin, Loader2, AlertCircle 
 } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default function VisitDetailsPage({ params }) {
   const router = useRouter();
   

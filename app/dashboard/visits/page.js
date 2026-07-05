@@ -47,6 +47,8 @@ async function getVisitsData(resolvedParams) {
   }
 }
 
+export const dynamic = "force-dynamic";
+
 export default async function VisitsPage({ searchParams }) {
   const authUser = await auth();
   if (!authUser.can("visits.read")) return null;

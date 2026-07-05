@@ -30,6 +30,8 @@ async function getPatientData(id) {
   }
 }
 
+export const dynamic = "force-dynamic";
+
 export default async function EditPatientPage({ params }) {
   // فك الـ Promise الخاص بـ params للتوافق الكامل مع Next.js 15
   const resolvedParams = await params;

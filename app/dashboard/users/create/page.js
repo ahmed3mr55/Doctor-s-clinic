@@ -8,6 +8,8 @@ export const metadata = {
   description: "لوحة تحكم إلحاق الكادر الطبي والموظفين الجدد بالعيادة وضبط الأدوار"
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function CreateUserPage() {
   const authUser = await auth();
   if (!authUser.can("users.create")) return null;

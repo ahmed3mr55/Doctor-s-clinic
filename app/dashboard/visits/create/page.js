@@ -7,6 +7,8 @@ import {
   AlertTriangle, Loader2, FileSpreadsheet, Activity, CalendarDays 
 } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default function CreateVisitPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
