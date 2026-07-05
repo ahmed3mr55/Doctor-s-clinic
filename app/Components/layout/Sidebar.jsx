@@ -61,7 +61,7 @@ const Sidebar = ({ user }) => {
           
           {/* الشعار */}
           <div className="mb-10 px-4">
-            <Link href="/dashboard" className="flex items-center gap-2">
+            <Link prefetch={false} href="/dashboard" className="flex items-center gap-2">
               <span className="text-2xl font-black text-white tracking-tighter">
                 Tan<span className="text-amber-500">.</span>
               </span>
@@ -88,6 +88,7 @@ const Sidebar = ({ user }) => {
               const isActive = pathname === item.href;
               return (
                 <Link
+                  prefetch={false}
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMobileOpen(false)}
