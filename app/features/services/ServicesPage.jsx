@@ -168,7 +168,7 @@ export default function ServicesPage() {
             <div className="relative w-full aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl rotate-2 group-hover:rotate-0 transition-transform duration-500">
               <Image
                 src="https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_1600,c_limit/v1780186841/photo-1629909613654-28e377c37b09_lmmxuo.jpg"
-                alt="Vera Clinic Interior"
+                alt="Tan Clinics Interior"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"

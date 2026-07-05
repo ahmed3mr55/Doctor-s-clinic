@@ -35,7 +35,7 @@ export default function ClinicLandingPage() {
             </div>
             <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tighter">
               دكتور <br />
-              <span className="text-orange-600">مصطفى العكازي</span>
+              <span className="text-orange-600">عبدالرحمن عوف</span>
             </h1>
             <p className="text-lg text-gray-500 leading-relaxed max-w-md">
               فن نحت القوام وتنسيقه بأحدث التقنيات العالمية. استمتع بتجربة طبية فاخرة تضمن لك النتائج التي تطمح إليها.
@@ -55,7 +55,7 @@ export default function ClinicLandingPage() {
             <div className="relative h-[450px] md:h-[550px] w-full overflow-hidden rounded-[40px] md:rounded-[80px] shadow-2xl bg-gray-100">
               <Image 
                 src="https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_800,c_fill,g_face/v1777934920/WhatsApp-Image-2022-01-26-at-12.02.27-AM-1_jfdglk.jpg"
-                alt="دكتور مصطفى العكازي"
+                alt="دكتور عبدالرحمن عوف"
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 500px"
@@ -139,7 +139,7 @@ export default function ClinicLandingPage() {
             </div>
           </div>
           <div className="relative h-[400px] w-full border border-white/10 rounded-[40px] flex items-center justify-center italic text-white/10 text-8xl font-bold select-none">
-            VERA
+            Tan
           </div>
         </div>
       </section>
@@ -151,7 +151,7 @@ export default function ClinicLandingPage() {
         </h3>
         <div className="mt-8 flex items-center justify-center gap-4">
           <div className="w-12 h-px bg-gray-200"></div>
-          <span className="font-bold text-sm tracking-widest uppercase text-orange-600">د. مصطفى العكازي</span>
+          <span className="font-bold text-sm tracking-widest uppercase text-orange-600">د. عبدالرحمن عوف</span>
           <div className="w-12 h-px bg-gray-200"></div>
         </div>
       </section>

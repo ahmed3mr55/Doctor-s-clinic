@@ -1,0 +1,308 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Article {
+  id String @id @default(cuid())
+
+  title String
+  slug  String @unique
+
+  categoryId String?
+
+  category Category? @relation(fields: [categoryId], references: [id])
+
+  content String @db.Text
+
+  image String
+
+  author String
+
+  readTime String
+
+  tags String[]
+
+  published Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([published, createdAt(sort: Desc)])
+}
+
+model Patient {
+  id String @id @default(cuid())
+
+  patientCode String    @unique
+  fullName    String
+  phone       String    @unique
+  email       String?
+  gender      Gender
+  birthDate   DateTime?
+
+  bloodType String?
+
+  address String?
+  city    String?
+
+  emergencyContact String?
+  emergencyPhone   String?
+
+  allergies       String?
+  chronicDiseases String?
+  medications     String?
+
+  notes String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  visits       Visit[]
+  files        PatientFile[]
+  appointments Appointment[]
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+model Visit {
+  id String @id @default(cuid())
+
+  patientId String
+  patient   Patient @relation(fields: [patientId], references: [id])
+
+  doctorId String?
+  doctor   User?   @relation(fields: [doctorId], references: [id])
+
+  visitType VisitType
+
+  chiefComplaint String?
+  diagnosis      String?
+
+  treatmentPlan String?
+
+  prescription String?
+
+  notes String?
+
+  height Float?
+  weight Float?
+
+  bloodPressure String?
+
+  nextVisitDate DateTime?
+
+  createdAt DateTime @default(now())
+
+  procedures Procedure[]
+  images     VisitImage[]
+}
+
+enum VisitType {
+  CONSULTATION
+  FOLLOW_UP
+  LASER
+  BOTOX
+  FILLER
+  SURGERY
+  SKINCARE
+}
+
+model Procedure {
+  id String @id @default(cuid())
+
+  visitId String
+  visit   Visit  @relation(fields: [visitId], references: [id])
+
+  name  String
+  price Float?
+
+  description String?
+
+  createdAt DateTime @default(now())
+}
+
+model VisitImage {
+  id String @id @default(cuid())
+
+  visitId String
+  visit   Visit  @relation(fields: [visitId], references: [id])
+
+  imageUrl String
+
+  type ImageType
+
+  createdAt DateTime @default(now())
+}
+
+enum ImageType {
+  BEFORE
+  AFTER
+  REPORT
+}
+
+model PatientFile {
+  id String @id @default(cuid())
+
+  patientId String
+  patient   Patient @relation(fields: [patientId], references: [id])
+
+  fileUrl  String
+  fileName String
+
+  createdAt DateTime @default(now())
+}
+
+model Appointment {
+  id String @id @default(cuid())
+
+  patientId String
+  patient   Patient @relation(fields: [patientId], references: [id])
+
+  appointmentDate DateTime
+
+  status AppointmentStatus
+
+  notes String?
+
+  createdAt DateTime @default(now())
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  NO_SHOW
+}
+
+model BookingRequest {
+  id String @id @default(cuid())
+
+  fullName String
+  phone    String
+  email    String?
+
+  preferredDate DateTime
+  notes         String?
+
+  status BookingRequestStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+}
+
+enum BookingRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CONVERTED_TO_APPOINTMENT
+}
+
+model DoctorSchedule {
+  id String @id @default(cuid())
+
+  doctorId String?
+
+  dayOfWeek Int // 0-6
+  startTime String
+  endTime   String
+
+  isActive Boolean @default(true)
+}
+
+model Category {
+  id String @id @default(cuid())
+
+  name String @unique
+  slug String @unique
+
+  articles Article[]
+
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id String @id @default(cuid())
+
+  name String
+
+  email String @unique
+
+  password String
+
+  phone String?
+
+  active Boolean @default(true)
+
+  lastLogin DateTime?
+
+  roleId String
+  role Role @relation(fields: [roleId], references: [id])
+
+  visits Visit[]
+
+  sessions Session[]
+
+  specialization String?
+  avatar String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Role {
+  id String @id @default(cuid())
+
+  name String @unique
+
+  users User[]
+
+  permissions RolePermission[]
+
+  createdAt DateTime @default(now())
+}
+
+model Permission {
+  id String @id @default(cuid())
+
+  name String @unique
+
+  description String?
+
+  roles RolePermission[]
+
+  createdAt DateTime @default(now())
+}
+
+model RolePermission {
+  id String @id @default(cuid())
+
+  roleId String
+  role   Role   @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  permissionId String
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@unique([roleId, permissionId])
+}
+
+model Session {
+  id String @id @default(cuid())
+
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  token String @unique
+
+  expiresAt DateTime
+
+  createdAt DateTime @default(now())
+}

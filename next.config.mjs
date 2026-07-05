@@ -19,7 +19,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "veraclinics.net",
+        hostname: "Tan Clinics.net",
         port: "",
         pathname: "/**",
       },

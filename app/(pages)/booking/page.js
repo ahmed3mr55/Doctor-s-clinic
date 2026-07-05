@@ -1,6 +1,6 @@
 import React from 'react';
 import { Calendar, ShieldCheck, Star, MapPin } from 'lucide-react';
-import AppointmentForm from '@/app/features/booking/AppointmentForm';
+import AppointmentFormClient from '@/app/features/book-appointment/AppointmentFormClient';
 
 export default async function BookingPage() {
   return (
@@ -21,7 +21,7 @@ export default async function BookingPage() {
             </h1>
             
             <p className="text-stone-500 text-lg leading-relaxed mb-10">
-              احجز استشارتك الخاصة مع د. مصطفى العكازي لمناقشة أهدافك الجمالية والحصول على خطة علاجية مخصصة تناسب تطلعاتك.
+              احجز استشارتك الخاصة مع د. عبدالرحمن عوف لمناقشة أهدافك الجمالية والحصول على خطة علاجية مخصصة تناسب تطلعاتك.
             </p>
 
             {/* مميزات الحجز */}
@@ -58,7 +58,7 @@ export default async function BookingPage() {
 
           {/* الجانب الأيسر: فورم الحجز */}
           <div className="lg:col-span-7">
-            <AppointmentForm />
+            <AppointmentFormClient />
           </div>
 
         </div>

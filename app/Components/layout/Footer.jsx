@@ -13,7 +13,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="space-y-6">
             <span className="text-3xl font-bold text-white">
-              Vera<span className="text-amber-500">Clinic</span>
+              Tan<span className="text-amber-500">Clinic</span>
             </span>
             <p className="text-stone-400 leading-relaxed italic">
               نلتزم بتقديم أعلى معايير الجمال والطب التجميلي بأحدث التقنيات العالمية وبأيدي خبراء متخصصين.
@@ -56,7 +56,7 @@ const Footer = () => {
               </li>
               <li className="flex gap-3">
                 <Mail className="text-amber-500 shrink-0" size={20} />
-                <span>info@veraclinics.net</span>
+                <span>info@Tan Clinics.net</span>
               </li>
             </ul>
           </div>
@@ -75,7 +75,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-stone-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-stone-500">
-          <p>© {new Date().getFullYear()} Vera Clinic. جميع الحقوق محفوظة.</p>
+          <p>© {new Date().getFullYear()} Tan Clinics. جميع الحقوق محفوظة.</p>
           <div className="flex gap-6">
             <Link href="#" className="hover:text-white">سياسة الخصوصية</Link>
             <Link href="#" className="hover:text-white">شروط الاستخدام</Link>

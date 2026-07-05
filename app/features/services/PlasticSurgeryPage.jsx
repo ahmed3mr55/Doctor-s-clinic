@@ -39,7 +39,7 @@ const PlasticSurgeryPage = () => {
           <FadeIn y={30}>
             <div className="text-stone-900">
               <span className="inline-block px-4 py-1.5 bg-amber-100 text-amber-800 rounded-full text-xs font-bold tracking-widest uppercase mb-6">
-                Vera Medical Excellence
+                Tan Medical Excellence
               </span>
               <h1 className="text-5xl lg:text-7xl font-bold mb-8 leading-[1.1] tracking-tight">
                 الجراحة التجميلية: <br />
@@ -48,7 +48,7 @@ const PlasticSurgeryPage = () => {
                 </span>
               </h1>
               <p className="text-lg text-stone-600 leading-relaxed mb-10 max-w-xl font-light">
-                تحت قيادة الدكتور مصطفى العكازي، نجمع بين أحدث التقنيات العالمية
+                تحت قيادة الدكتور عبدالرحمن عوف، نجمع بين أحدث التقنيات العالمية
                 والنظرة الفنية الدقيقة لنحت كل تفصيلة في الجسم والوجه، مع ضمان
                 أقصى درجات الأمان.
               </p>
@@ -135,7 +135,7 @@ const PlasticSurgeryPage = () => {
         ))}
       </section>
 
-      {/* 3. Why Choose Vera */}
+      {/* 3. Why Choose Tan */}
       <section className="bg-stone-900 py-24 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -150,7 +150,7 @@ const PlasticSurgeryPage = () => {
                   {[
                     {
                       t: "إشراف استشاري",
-                      d: "دقة في التشخيص تحت إشراف د. مصطفى العكازي.",
+                      d: "دقة في التشخيص تحت إشراف د. عبدالرحمن عوف.",
                     },
                     {
                       t: "تقنيات FDA",

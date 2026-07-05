@@ -59,7 +59,7 @@ const Navbar = () => {
             className="relative z-50 group flex items-center gap-1"
           >
             <span className="text-3xl font-black tracking-tighter text-stone-900 transition-colors">
-              Vera
+              Tan
             </span>
             <span className="text-3xl font-light italic text-amber-600 transition-colors">
               Clinic

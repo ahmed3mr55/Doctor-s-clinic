@@ -49,7 +49,7 @@ export default function AboutPage() {
         <div className="absolute inset-0">
           <Image
             src="https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_1200,c_limit/v1777934870/Untitled-design-2025-10-22T162454.315_z4umrg.png"
-            alt="Vera Clinic Interior"
+            alt="Tan Clinics Interior"
             fill
             sizes="100vw"
             className="object-cover"
@@ -63,7 +63,7 @@ export default function AboutPage() {
         <div className="relative z-10 text-center text-white px-6">
           <FadeIn y={30}>
             <h1 className="text-6xl lg:text-8xl font-black mb-6 tracking-tight">
-              Vera clinics
+              Tan Clinics
             </h1>
             <p className="text-xl lg:text-3xl font-medium text-amber-400">
               قصة شغف، رؤية للتميز، وقيم نلتزم بها
@@ -86,7 +86,7 @@ export default function AboutPage() {
               <div className="text-stone-600 text-lg leading-loose space-y-6">
                 <p>
                   لم تكن "فيرا" مجرد فكرة عابرة، بل كانت حلماً يراود مؤسسها،{" "}
-                  <strong>الدكتور مصطفى العكازي</strong>، لسنوات طويلة. بعد
+                  <strong>الدكتور عبدالرحمن عوف</strong>، لسنوات طويلة. بعد
                   مسيرة مهنية حافلة بالنجاح والخبرة في أعرق المؤسسات الطبية، رأى
                   د. مصطفى فجوة بين تقديم الخدمات الطبية التقليدية وبين التجربة
                   الإنسانية المتكاملة التي يستحقها كل مريض.
@@ -123,8 +123,8 @@ export default function AboutPage() {
 
               <div className="relative w-full aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl">
                 <Image
-                  src="https://res.cloudinary.com/dxxeujg8z/image/upload/f_auto,q_auto,w_1200,c_limit/v1777934920/WhatsApp-Image-2022-01-26-at-12.02.27-AM-1_jfdglk.jpg"
-                  alt="Dr. Mostafa El-Akazi"
+                  src="https://res.cloudinary.com/dxxeujg8z/image/upload/v1781601860/portrait-of-a-happy-young-doctor-in-his-clinic-royalty-free-image-1661432441_ijtxn7.avif"
+                  alt="Dr. Abdelrahman Aouf"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
