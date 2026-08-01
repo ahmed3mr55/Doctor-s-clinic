@@ -1,0 +1,14 @@
+services:
+  app:
+    container_name: my-project
+
+    build:
+      context: .
+
+    restart: unless-stopped
+
+    env_file:
+      - .env.production
+
+    ports:
+      - "3001:3000"
