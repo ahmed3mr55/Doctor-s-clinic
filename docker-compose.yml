@@ -1,6 +1,6 @@
 services:
   app:
-    container_name: my-project
+    container_name: doctor-clinic
 
     build:
       context: .
@@ -10,5 +10,9 @@ services:
     env_file:
       - .env.production
 
-    ports:
-      - "3001:3000"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
