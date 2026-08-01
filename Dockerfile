@@ -3,13 +3,13 @@ FROM node:24-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
+COPY prisma ./prisma
 
 RUN npm install
 
 COPY . .
 
 RUN npm run build
-
 
 FROM node:24-alpine
 
