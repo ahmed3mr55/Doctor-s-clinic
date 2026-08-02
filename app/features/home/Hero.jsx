@@ -74,7 +74,7 @@ export default function Hero() {
     <div className="bg-[#FAF7F2] antialiased text-[#2D2621] selection:bg-[#E6DFD5] selection:text-[#2D2621] overflow-x-hidden">
       <HeroSection />
 
-      <section className="bg-[#FAF7F2] py-12 md:py-16 border-y border-[#E6DFD5]/70">
+      <section className="bg-[#FAF7F2] py-12 md:py-15 border-y border-[#E6DFD5]/70">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 divide-y divide-[#E6DFD5]/40 sm:divide-y-0">
             {stats.map((stat, i) => (
