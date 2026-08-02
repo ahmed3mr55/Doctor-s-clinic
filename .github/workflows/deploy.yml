@@ -22,9 +22,13 @@ jobs:
           script: |
             cd /opt/apps/Doctor-s-clinic
 
+
             git fetch origin
             git reset --hard origin/master
 
-            docker compose up -d --build --remove-orphans
 
-            docker image prune -f
+            docker compose up -d --build --remove-orphans
+            
+
+            docker image prune -af
+            docker builder prune -af
