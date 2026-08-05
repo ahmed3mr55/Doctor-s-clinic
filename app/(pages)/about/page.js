@@ -3,7 +3,7 @@ import AboutPage from "@/app/features/about/AboutPage";
 
 const page = () => {
   return (
-    <div>
+    <div id="about">
       <AboutPage />
     </div>
   );

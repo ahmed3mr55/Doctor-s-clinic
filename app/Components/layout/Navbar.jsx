@@ -1,170 +1,165 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useRouter } from "next/navigation";
 
-const Navbar = () => {
+// الروابط الفعلية للصفحات المنفصلة
+const NAV_LINKS = [
+  { name: "الرئيسية", href: "/" },
+  { name: "عن العيادة", href: "/about" },
+  { name: "الخدمات", href: "/services" },
+  { name: "المقالات", href: "/blog" },
+  { name: "تواصل معنا", href: "/contact-us" },
+];
+
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const router = useRouter();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname(); // لمعرفة المسار الحالي وتحديد الرابط النشط
 
-  // مراقبة التمرير لتغيير نمط الناف بار
+  // 1. مراقبة التمرير لتغيير خلفية الناف بار (Sticky Effect)
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // منع التمرير في الصفحة عند فتح قائمة الجوال
+  // 2. منع التمرير في الصفحة الخلفية عند فتح قائمة الجوال
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "unset";
     return () => {
       document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
-  const navLinks = [
-    { name: "الرئيسية", href: "/" },
-    { name: "عن العيادة", href: "/about" },
-    { name: "الخدمات", href: "/services" },
-    { name: "المقالات", href: "/blog" },
-    { name: "تواصل معنا", href: "/contact-us" },
-  ];
-
-  const handleClick = async () => {
-    await new Promise((r) => setTimeout(r, 2000));
-    router.push("/about");
-  };
-
   return (
-    <nav
+    <header
       dir="rtl"
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/90 backdrop-blur-md shadow-sm py-4 border-b border-stone-100"
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ease-in-out ${
+        isScrolled
+          ? "bg-white/98 shadow-[0_2px_20px_rgba(0,0,0,0.04)] py-3"
           : "bg-transparent py-6"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <nav className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="flex justify-between items-center">
-          {/* الشعار (Logo) */}
+          {/* الشعار */}
           <Link
             href="/"
-            className="relative z-50 group flex items-center gap-1"
+            className="relative z-50 flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-lg"
+            aria-label="الرئيسية"
           >
-            <span className="text-3xl font-black tracking-tighter text-stone-900 transition-colors">
+            <span className="text-2xl lg:text-3xl font-black tracking-tighter text-stone-950">
               Tan
             </span>
-            <span className="text-3xl font-light italic text-amber-600 transition-colors">
+            <span className="text-2xl lg:text-3xl font-medium italic text-amber-600">
               Clinic
             </span>
           </Link>
 
-          {/* روابط سطح المكتب (Desktop Links) */}
-          <div className="hidden md:flex items-center gap-8 lg:gap-10">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`text-sm lg:text-base font-bold transition-all relative group py-2 ${
-                  scrolled
-                    ? "text-stone-600 hover:text-amber-600"
-                    : "text-stone-800 hover:text-amber-600"
-                }`}
-              >
-                {link.name}
-                {/* خط سفلي متحرك عند التحويم */}
-                <span className="absolute bottom-0 right-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 ease-out group-hover:w-full" />
-              </Link>
-            ))}
+          {/* روابط سطح المكتب (Desktop Navigation) */}
+          <ul className="hidden md:flex items-center gap-2 lg:gap-4">
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <li key={link.name} className="relative">
+                  <Link
+                    href={link.href}
+                    className={`relative px-4 py-2 text-sm lg:text-base font-semibold transition-colors duration-200 z-10 block ${
+                      isActive
+                        ? "text-amber-700"
+                        : isScrolled
+                        ? "text-stone-600 hover:text-stone-900"
+                        : "text-stone-800 hover:text-stone-950"
+                    }`}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {link.name}
+                  </Link>
+                  {/* مؤشر نشط متحرك (Framer Motion LayoutId) */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNavIndicator"
+                      className="absolute inset-0 bg-amber-50/80 rounded-full -z-10"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </li>
+              );
+            })}
+          </ul>
 
+          {/* زر الحجز لسطح المكتب */}
+          <div className="hidden md:block">
             <Link
               href="/booking"
-              className="bg-stone-900 hover:bg-amber-600 text-white px-8 py-3.5 rounded-full text-sm font-bold transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-amber-600/30"
+              className="bg-stone-950 hover:bg-stone-800 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-md hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2"
             >
               احجز استشارتك
             </Link>
           </div>
 
-          {/* زر القائمة للجوال (Mobile Toggle) */}
+          {/* زر قائمة الجوال (Mobile Menu Toggle) */}
           <button
-            className="md:hidden relative z-50 p-2 text-stone-900 bg-stone-100/50 hover:bg-stone-200 rounded-full transition-colors backdrop-blur-sm"
             onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle Menu"
+            className="md:hidden relative z-50 p-2 text-stone-900 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+            aria-expanded={isOpen}
+            aria-label="تبديل القائمة"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={26} strokeWidth={2.5} /> : <Menu size={26} strokeWidth={2.5} />}
           </button>
         </div>
-      </div>
+      </nav>
 
-      {/* قائمة الجوال (Mobile Menu) */}
+      {/* قائمة الجوال (Mobile Menu Overlay) */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            {/* خلفية ضبابية للقائمة */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-stone-900/20 backdrop-blur-sm md:hidden z-40"
-              onClick={() => setIsOpen(false)}
-            />
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className="absolute top-full left-0 w-full bg-white border-b border-stone-100 shadow-xl md:hidden overflow-hidden"
+          >
+            <div className="flex flex-col px-6 py-4 gap-2 max-h-[calc(100vh-80px)] overflow-y-auto">
+              <ul className="flex flex-col space-y-1">
+                {NAV_LINKS.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <li key={link.name}>
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`block w-full px-4 py-3 rounded-xl text-base font-bold transition-colors ${
+                          isActive
+                            ? "bg-amber-50 text-amber-700"
+                            : "text-stone-700 hover:bg-stone-50"
+                        }`}
+                        aria-current={isActive ? "page" : undefined}
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
 
-            {/* محتوى القائمة */}
-            <motion.div
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="absolute top-full left-4 right-4 mt-2 bg-white rounded-3xl shadow-2xl border border-stone-100 md:hidden z-50 overflow-hidden"
-            >
-              <div className="flex flex-col p-6 gap-2">
-                {navLinks.map((link, idx) => (
-                  <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.05 + 0.1 }}
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className="group flex items-center justify-between py-4 border-b border-stone-50 text-lg font-bold text-stone-800 hover:text-amber-600 hover:pl-2 transition-all"
-                    >
-                      <span>{link.name}</span>
-                      <div className="w-2 h-2 bg-amber-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </Link>
-                  </motion.div>
-                ))}
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="mt-4"
+              <div className="pt-4 mt-2 border-t border-stone-100 pb-4">
+                <Link
+                  href="/booking"
+                  onClick={() => setIsOpen(false)}
+                  className="flex justify-center items-center w-full bg-stone-950 text-white py-3.5 rounded-full font-bold text-sm shadow-md active:scale-[0.98] transition-transform"
                 >
-                  <Link
-                    href="/booking"
-                    onClick={() => setIsOpen(false)}
-                    className="flex justify-center items-center w-full bg-stone-900 hover:bg-amber-600 text-white py-4 rounded-full font-bold text-lg shadow-lg transition-colors"
-                  >
-                    احجز استشارتك الآن
-                  </Link>
-                </motion.div>
+                  احجز استشارتك الآن
+                </Link>
               </div>
-            </motion.div>
-          </>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </header>
   );
-};
-
-export default Navbar;
+}

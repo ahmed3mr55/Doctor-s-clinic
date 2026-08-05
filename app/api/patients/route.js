@@ -142,10 +142,10 @@ export async function POST(req) {
 export async function GET(req) {
   try {
     // GET lists patient records, so it requires patients.read.
-    // const auth = await verifyAccess(["patients.read"]);
-    // if (!auth.authorized) {
-    //   return accessDeniedResponse(auth);
-    // }
+    const auth = await verifyAccess(["patients.read"]);
+    if (!auth.authorized) {
+      return accessDeniedResponse(auth);
+    }
 
     const { searchParams } = new URL(req.url);
 

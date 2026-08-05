@@ -8,7 +8,7 @@ export const metadata = {
 
 const page = ({ searchParams }) => {
   return (
-    <div>
+    <div id="blog">
       <BlogPage searchParams={searchParams} />
     </div>
   );

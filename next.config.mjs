@@ -19,7 +19,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "Tan Clinics.net",
+        hostname: "images.unsplash.com",
         port: "",
         pathname: "/**",
       },

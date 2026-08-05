@@ -10,6 +10,9 @@ async function getPatientsData(page = 1, search = "") {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
   const cookieStore = await cookies();
 
+  console.log("Cookies:", cookieStore.getAll());
+  console.log("Cookie Header:", cookieStore.toString());
+
   try {
     // إرسال الـ page والـ search للـ API ليعيد البيانات الصحيحة
     const response = await fetch(
@@ -23,6 +26,10 @@ async function getPatientsData(page = 1, search = "") {
       },
     );
 
+    console.log("Status:", response.status);
+
+    console.log("Body:", await response.text());
+
     if (!response.ok)
       return { patients: [], pagination: { totalPages: 1, page: 1, total: 0 } };
     const data = await response.json();
@@ -34,6 +41,8 @@ async function getPatientsData(page = 1, search = "") {
     console.error("Failed to fetch patients on server:", error);
     return { patients: [], pagination: { totalPages: 1, page: 1, total: 0 } };
   }
+
+  
 }
 
 export const dynamic = "force-dynamic";
