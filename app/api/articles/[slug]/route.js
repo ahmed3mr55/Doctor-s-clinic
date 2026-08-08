@@ -1,7 +1,7 @@
 // app/api/articles/[slug]/route.js
-export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+export const dynamic = "force-dynamic";
 
 function json(data, status = 200) {
   return NextResponse.json(data, { status });
