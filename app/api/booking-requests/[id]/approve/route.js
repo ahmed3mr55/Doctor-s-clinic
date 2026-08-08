@@ -22,7 +22,7 @@ function jsonError(error, status) {
 export async function POST(request, { params }) {
   try {
     // Approval converts a booking request into an appointment, so it requires bookingRequests.approve.
-    const auth = await verifyAccess(["bookingRequests.approve"]);
+    const auth = await verifyAccess(["booking_requests.update"]);
     if (!auth.authorized) {
       return accessDeniedResponse(auth);
     }

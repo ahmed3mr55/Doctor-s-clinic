@@ -15,7 +15,7 @@ function jsonError(error, status) {
 export async function PATCH(request, { params }) {
   try {
     // PATCH changes booking request status, so it requires bookingRequests.update.
-    const auth = await verifyAccess(["bookingRequests.update"]);
+    const auth = await verifyAccess(["booking_requests.update"]);
     if (!auth.authorized) {
       return accessDeniedResponse(auth);
     }
@@ -78,7 +78,7 @@ export async function PATCH(request, { params }) {
 export async function DELETE(request, { params }) {
   try {
     // DELETE removes a booking request, so it requires bookingRequests.delete.
-    const auth = await verifyAccess(["bookingRequests.delete"]);
+    const auth = await verifyAccess(["booking_requests.update"]);
     if (!auth.authorized) {
       return accessDeniedResponse(auth);
     }
