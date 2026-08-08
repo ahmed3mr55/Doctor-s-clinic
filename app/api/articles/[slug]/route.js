@@ -1,8 +1,7 @@
 // app/api/articles/[slug]/route.js
-
+export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { accessDeniedResponse, verifyAccess } from "@/lib/auth/verifyAccess";
 
 function json(data, status = 200) {
   return NextResponse.json(data, { status });
@@ -23,12 +22,6 @@ function getErrorResponse(error) {
 // GET SINGLE ARTICLE
 export async function GET(req, { params }) {
   try {
-    // GET reads one article by slug, so it requires articles.read.
-    // const auth = await verifyAccess(["articles.read"]);
-    // if (!auth.authorized) {
-    //   return accessDeniedResponse(auth);
-    // }
-
     const { slug } = await params;
 
     const article = await prisma.article.findUnique({
